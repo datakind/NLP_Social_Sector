@@ -1,0 +1,65 @@
+---
+layout: default
+---
+
+<!-- Load MathJax to display equations. See http://docs.mathjax.org/en/latest/index.html -->
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+<aside class="preamble">
+  <p>This site presents demos which supplement the article, <em><a href="https://ARTICLE_URL_HERE">“Six Ways to Implement Natural Language Processing in the Social Sector.”</a></em> (replace link once published) Please refer to the article for an overview of NLP, its foundational techniques, and more on applications in the social sector.</p>
+  <p>The demos for each technique were primarily built on a dataset of 28,000 bills signed over the past ten years from five states (California, New York, South Dakota, New Hampshire, and Pennsylvania). All supporting code can be found <a href="https://github.com/datakind/NLP_Social_Sector/tree/master/notebooks">in Github</a>.</p>
+</aside>
+
+<nav class="top-nav">
+  <button class="top-nav-expand" id="top-nav-expand">See all demos</button>
+  <ul class="top-nav-links" id="top-nav-links">
+    {% for site-page in site.pages %}
+      {% if site-page.include-in-navigation %}
+        <li class="top-nav-item{% if site-page.url == page.url %} top-nav-item-active{% endif %}">
+          <a href="{{ site-page.url | relative_url }}">
+            {% if site-page.nav-title-short %}
+              {{ site-page.nav-title-short }}
+            {% elsif site-page.nav-title %}
+              {{ site-page.nav-title }}
+            {% else %}
+              {{ site-page.title }}
+            {% endif %}
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</nav>
+
+
+
+{{ content }}
+
+<nav class="more-demos">
+  <h3>More demos</h3>
+  <ul>
+    {% for site-page in site.pages %}
+      {% if site-page.include-in-navigation and site-page.url != page.url %}
+        <li>
+          <a href="{{ site-page.url | relative_url }}">
+            {% if site-page.nav-title %}{{ site-page.nav-title }}{% else %}{{ site-page.title }}{% endif %}
+          </a> — {{ site-page.nav-description }}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</nav>
+
+{% if page.show-acknowledgment %}
+  <h3>Acknowledgement</h3>
+  <p>This site was created by <a href="https://www.datakind.org">DataKind</a>. We would like to thank our contributors, who volunteered countless hours to develop the material on this site (including the sample code) in support of making NLP accessible to the social sector.</p>
+  <ul>
+    {% for contributor in site.contributors %}
+      <li><strong>{{ contributor.name }}</strong> {{ contributor.description }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<script src="{{ '/assets/js/top-nav.js' | relative_url }}"></script>

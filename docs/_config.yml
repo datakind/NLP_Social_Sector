@@ -1,0 +1,52 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: Natural Language Processing in the Social Sector — Supplemental Materials
+# email: your-email@example.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Supplemental materials to the article,
+  "Six Ways to Implement Natural Language Processing in the Social Sector"
+baseurl: "/NLP_Social_Sector" # the subpath of your site, e.g. /blog
+url: "https://datakind.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+
+# custom variable to display contributors; see `_templates/default_with_mathjax.html`
+contributors:
+  - name: Sarah Eltinge
+    description: is a data engineer based in Providence, RI who uses data to improve health and healthcare. In her free time, she enjoys knitting, biking, vegetarian cooking, and doting on her rescue cat.
+  - name: Matthew Harris
+    description: is a data science manager working for a fintech company in New York City. He plays guitar badly and fosters dogs for Badass Brooklyn animal rescue. All his furniture has been slightly chewed.
+  - name: Jared McDonald
+    description: is a software engineer in Brooklyn, New York. These days, his free time is mostly occupied by his rescue pup, Ginger, but he definitely had other interests before adopting her.
+  - name:  John Winter
+    description: is a Data Scientist at Capital One in New York City. He has not rescued any animals, but volunteers at his church to make up for it. He enjoys yoga and meditation.
+# Build settings
+markdown: kramdown
+theme: jekyll-theme-primer
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Exclude from processing
+exclude:
+  # Jekyll defaults
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  # Custom files to exclude
+  - README.md

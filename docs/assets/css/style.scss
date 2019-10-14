@@ -1,0 +1,299 @@
+---
+---
+
+// Some rudimentary (and incomplete) style overrides to get
+// the site to match up better with DataKind brand guidelines.
+
+// Import the existing theme styles
+@import "{{ site.theme }}";
+
+// Import LDAvis-generated styles
+@import "lda.css";
+
+// DataKind color palette
+// Oranges
+$color-orange-dark: #e57300;
+$color-orange-med: #ff9200;
+$color-orange-light: #ffb15f;
+// Greys
+$color-grey-dark: #303030;
+$color-grey-med: #666;
+$color-grey-light: #999;
+$color-grey-lightest: #f1f1f1;
+$color-white: #fff;
+// Blues
+$color-blue-dark: #334067;
+$color-blue-med: #456185;
+$color-blue-light: #4399ce;
+$color-blue-lightest: #89b3cd;
+// Turquoises
+$color-turquoise-dark: #338d92;
+$color-turquoise-med: #00bac3;
+$color-turquoise-light: #96d0d3;
+
+// DataKind fonts
+$font-title: "Helvetica Neue", sans-serif;
+$font-body: Georgia, serif;
+
+// Font size for body font (paragraphs, blockquotes, lists, etc)
+$font-size-text: 18px;
+// Slightly smaller font size for de-emphasized text
+$font-size-small: $font-size-text * 0.9;
+
+// Misc
+$border-radius-default: 4px;
+
+// Screen width that allows the LDAvis graphic to fit without fiddling
+// with the exported D3 script. Note that most of the content is within
+// $text-column-width instead, and the `.fullwidth-asset` class is used
+// to "pop out" larger graphics (all of which except the LDA graphic
+// scale down to smaller screens)
+$max-width: 1210px;
+
+// A nice maximum legible column width
+$text-column-width: 720px;
+
+// The theme groups pretty much everything inside this class, so
+// do the same here to match its specificity
+.markdown-body {
+  max-width: $max-width;
+  font-family: $font-body;
+  color: $color-grey-dark;
+
+  > :not(.fullwidth-asset) {
+    max-width: $text-column-width;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .fullwidth-asset {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $font-title;
+    font-weight: 100;
+    border-bottom: none; // Override theme's default border on all headings
+  }
+
+  // Add back heavier font-weight on h1 only
+  h1 {
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+
+  a {
+    color: $color-orange-dark;
+
+    &:hover {
+      color: $color-orange-med;
+      text-decoration: none;
+    }
+  }
+
+  p,
+  blockquote,
+  ol,
+  ul,
+  dl,
+  table,
+  pre {
+    font-size: $font-size-text;
+  }
+
+  blockquote {
+    border-left-color: $color-grey-lightest;
+    color: $color-grey-dark;
+  }
+}
+
+.preamble {
+  font-family: $font-title;
+  color: $color-grey-med;
+
+  p {
+    font-size: $font-size-small;
+  }
+}
+
+.top-nav-expand {
+  background: none;
+  border: 0;
+  font-family: $font-title;
+  font-weight: bold;
+  color: $color-orange-dark;
+  padding: 0.5rem 1rem;
+  position: relative;
+  left: -1rem;
+  display: inline-flex;
+  align-items: baseline;
+
+  &::after {
+    content: "▸";
+    position: relative;
+    margin-left: 0.5rem;
+  }
+
+  &.top-nav-expand-active {
+    &::after {
+      content: "▾";
+    }
+  }
+}
+
+// See https://css-tricks.com/using-css-transitions-auto-dimensions/
+.top-nav-links {
+  transition: max-height 0.3s ease-in-out;
+  overflow: hidden;
+  height: auto;
+  max-height: 0;
+
+  &.top-nav-links-active {
+    max-height: 200px;
+  }
+}
+
+.top-nav {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid $color-grey-lightest;
+}
+
+.top-nav-item {
+  font-size: $font-size-small;
+  font-family: $font-title;
+  list-style-type: circle;
+
+  a {
+    font-weight: bold;
+  }
+
+  &.top-nav-item-active {
+    a {
+      color: $color-grey-dark;
+      cursor: default;
+    }
+    
+    list-style-type: disc;
+  }
+}
+
+.more-demos {
+  margin-top: 2rem;
+}
+
+// Topic count switcher
+.lda-topic-count-select {
+  font-family: $font-title;
+  font-size: $font-size-text;
+}
+.fullwidth-asset.lda-topic-select-wrapper {
+  margin-bottom: 1rem;
+}
+.fullwidth-asset.lda-graphic {
+  margin-top: 0;
+}
+
+// Some styles for LDAvis elements; see assets/js/ldavis.js
+.ldavis-button {
+  color: $color-grey-med;
+  border: 0;
+  background-color: transparent;
+  border: 1px solid $color-grey-light;
+  border-radius: $border-radius-default;
+  margin-left: 10px;
+  transition: all 500ms ease;
+  font-weight: 500;
+
+  &:hover {
+    background-color: $color-orange-med;
+    border-color: $color-orange-med;
+    color: white;
+  }
+  &:active {
+    background-color: $color-orange-dark;
+    border-color: $color-orange-dark;
+  }
+}
+
+.ldavis-input {
+  border-radius: $border-radius-default;
+  border: 1px solid $color-grey-light;
+  padding: 2px 5px 1px; // Probably overly specific
+  width: 50px;
+  margin-left: 10px;
+}
+
+.ldavis-controls {
+  background-color: $color-grey-lightest;
+  font-family: $font-title;
+  height: 50px; // Note that width is set in ldavis.js to keep it in sync with the variables hard-coded there.
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 10px;
+}
+
+// Styles for slideshow
+.slideshow-container {
+  margin-bottom: 1rem;
+}
+
+.iframe-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: percentage(569px / 960px); // Based on 960x569 size from Google
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Styles for text summarization demo
+$bill-text-column-scaling-factor: 0.9;
+.text-summarization-bill-text {
+  padding: 0 1rem;
+  max-width: $text-column-width * $bill-text-column-scaling-factor;
+
+  &,
+  p {
+    font-size: $font-size-small;
+  }
+}
+
+.text-summarization-controls {
+  position: sticky;
+  top: 0;
+  background-color: $color-white;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid $color-grey-lightest;
+}
+
+.text-summarization-label {
+  display: block;
+  padding: 0.125rem 0;
+  font-family: $font-title;
+  font-size: $font-size-text;
+}
+
+.text-summarization-highlight {
+  &.text-summarization-term-1 {
+    background-color: $color-blue-lightest;
+  }
+  &.text-summarization-term-2 {
+    background-color: $color-turquoise-light;
+  }
+  &.text-summarization-summary {
+    background-color: $color-orange-light;
+  }
+}

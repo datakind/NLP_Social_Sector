@@ -14,5 +14,5 @@ pyldavis>=2.1.2
 stop-words>=2018.7.23
 pyemd>=0.5.1
 newspaper3k==0.2.8
-PyPDF2==1.26.0
+PyPDF2==1.27.9
 wget==3.2
